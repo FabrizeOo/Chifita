@@ -1,0 +1,105 @@
+package pe.edu.utp.dao.impl;
+
+import pe.edu.utp.dao.EmpleadoDAO;
+import pe.edu.utp.modelos.Empleado;
+import pe.edu.utp.utilidades.Conexionsecu;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class EmpleadoDAOImpl implements EmpleadoDAO {
+    private Conexionsecu conexion;
+
+    public EmpleadoDAOImpl(Conexionsecu conexion) {
+        this.conexion = conexion;
+    }
+
+    @Override
+    public void crearEmpleado(Empleado empleado) {
+        String sql = "INSERT INTO usuarios (id_usuario, nombre, apellido, nombreUsuario, contrasena, cargo, actividad) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conn = conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, empleado.getId_usuario());
+            stmt.setString(2, empleado.getNombre());
+            stmt.setString(3, empleado.getApellido());
+            stmt.setString(4, empleado.getNombreUsuario());
+            stmt.setString(5, empleado.getContrasena());
+            stmt.setString(6, empleado.getCargo());
+            stmt.setBoolean(7, empleado.getActividad());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Empleado leerEmpleado(int id) {
+        String sql = "SELECT * FROM usuarios WHERE id_usuario = ?";
+        try (Connection conn = conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Empleado(
+                        rs.getInt("id_usuario"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("nombreUsuario"), // Cambiado aquí
+                        rs.getString("contrasena"),
+                        rs.getString("cargo"),
+                        rs.getBoolean("actividad")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // No se encontró
+    }
+
+    @Override
+    public List<Empleado> leerTodosEmpleados() {
+        List<Empleado> empleados = new ArrayList<>();
+        String sql = "SELECT * FROM usuarios WHERE cargo != 'administrador'";
+        try (Connection conn = conexion.conectar(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                empleados.add(new Empleado(
+                        rs.getInt("id_usuario"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("nombreUsuario"), // Cambiado aquí
+                        rs.getString("contrasena"),
+                        rs.getString("cargo"),
+                        rs.getBoolean("actividad")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return empleados;
+    }
+
+    @Override
+    public void actualizarEmpleado(Empleado empleado) {
+        String sql = "UPDATE usuarios SET nombre = ?, apellido = ?, nombreUsuario = ?, actividad = ? WHERE id_usuario = ?";
+        try (Connection conn = conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, empleado.getNombre());
+            stmt.setString(2, empleado.getApellido());
+            stmt.setString(3, empleado.getNombreUsuario()); // Cambiado aquí
+            stmt.setBoolean(4, empleado.getActividad());
+            stmt.setInt(5, empleado.getId_usuario());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void eliminarEmpleado(int id) {
+        String sql = "DELETE FROM usuarios WHERE id_usuario = ?";
+        try (Connection conn = conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="437.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="40.0" layoutY="153.0" prefHeight="306.0" prefWidth="152.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="id_mesa" />
+          <TableColumn prefWidth="75.0" text="capacidad" />
+        </columns>
+      </TableView>
+      <Button layoutX="296.0" layoutY="167.0" mnemonicParsing="false" text="Agregar" />
+      <Button layoutX="302.0" layoutY="246.0" mnemonicParsing="false" text="Editar" />
+      <Button layoutX="296.0" layoutY="319.0" mnemonicParsing="false" text="Eliminar" />
+      <TextField layoutX="42.0" layoutY="48.0" promptText="id_mesa" />
+      <TextField layoutX="42.0" layoutY="96.0" promptText="capacidad" />
+   </children>
+</Pane>

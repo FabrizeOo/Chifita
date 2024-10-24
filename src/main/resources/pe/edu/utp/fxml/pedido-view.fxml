@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane  prefHeight="687.0" prefWidth="902.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.utp.controladores.PedidoController">
+   <TabPane layoutX="-15.0" layoutY="-14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="864.0" tabClosingPolicy="UNAVAILABLE">
+  <tabs>
+    <Tab  text="Platos">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="621.0" prefWidth="858.0">
+               <children>
+                  <ImageView id="Aeropuerto" fitHeight="124.0" fitWidth="133.0" layoutX="29.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/aeropuerto.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="product_101" layoutX="31.0" layoutY="143.0" prefHeight="23.0" prefWidth="129.0" promptText="Cantidad" />
+                  <Label layoutX="65.0" layoutY="25.0" text="Aeropuerto" />
+                  <Label layoutX="215.0" layoutY="25.0" text="Arroz Chaufa De Chancho" />
+                  <TextField fx:id="product_102" layoutX="219.0" layoutY="143.0" prefHeight="23.0" prefWidth="129.0" promptText="Cantidad" />
+                  <ImageView id="Arroz_Chaufa_De_Chancho" fitHeight="95.0" fitWidth="132.0" layoutX="218.0" layoutY="42.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@/arrozchaufadechancho.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="413.0" layoutY="25.0" text="Arroz Chaufa De Langostinos" />
+                  <TextField layoutX="428.0" layoutY="143.0" prefHeight="23.0" prefWidth="129.0" promptText="Cantidad" />
+                  <ImageView id="Arroz_Chaufa_De_Langostinos" fitHeight="96.0" fitWidth="132.0" layoutX="426.0" layoutY="42.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@/arrozchaufadelangostinos.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="646.0" layoutY="25.0" text="Arroz Chaufa De Pollo" />
+                  <TextField layoutX="642.0" layoutY="143.0" prefHeight="23.0" prefWidth="129.0" promptText="Cantidad" />
+                  <ImageView id="Arroz_Chaufa_De_Pollo" fitHeight="124.0" fitWidth="133.0" layoutX="640.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/arrozchaufadepollo.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Limon Kay" fitHeight="93.0" fitWidth="140.0" layoutX="647.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/limonkay.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="644.0" layoutY="312.0" prefHeight="23.0" prefWidth="129.0" promptText="Cantidad" />
+                  <Label layoutX="681.0" layoutY="194.0" text="Limon Kay" />
+                  <ImageView id="Chi_Jau_Kay" fitHeight="96.0" fitWidth="132.0" layoutX="428.0" layoutY="211.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@/chijaukay.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="430.0" layoutY="312.0" prefHeight="23.0" prefWidth="129.0" promptText="Cantidad" />
+                  <Label layoutX="461.0" layoutY="194.0" text="Chi Jau Kay" />
+                  <ImageView id="Chancho_Asado" fitHeight="95.0" fitWidth="132.0" layoutX="220.0" layoutY="211.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@/chanchoasado.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="221.0" layoutY="312.0" prefHeight="23.0" prefWidth="129.0" promptText="Cantidad" />
+                  <Label layoutX="241.0" layoutY="194.0" text="Chancho Asado" />
+                  <Label layoutX="50.0" layoutY="194.0" text="Caldo De Gallina" />
+                  <TextField layoutX="33.0" layoutY="312.0" prefHeight="23.0" prefWidth="129.0" promptText="Cantidad" />
+                  <ImageView id="Caldo_De_Gallina" fitHeight="124.0" fitWidth="133.0" layoutX="30.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/caldodegallina.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Sopa_de_Wantan_Especial" fitHeight="92.0" fitWidth="131.0" layoutX="30.0" layoutY="373.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@/sopawantanespecial.jpeg" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="32.0" layoutY="475.0" prefHeight="23.0" prefWidth="129.0" promptText="Cantidad" />
+                  <Label layoutX="28.0" layoutY="357.0" text="Sopa de Wantan Especial" />
+                  <Label layoutX="219.0" layoutY="357.0" text="Tallarin Saltado de Pollo" />
+                  <TextField layoutX="220.0" layoutY="475.0" prefHeight="23.0" prefWidth="129.0" promptText="Cantidad" />
+                  <ImageView id="Tallarin_Saltado_de_Pollo" fitHeight="95.0" fitWidth="132.0" layoutX="219.0" layoutY="374.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@/tallarinsaltadodepollo.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="471.0" layoutY="357.0" text="Ti Pa Kay" />
+                  <TextField layoutX="429.0" layoutY="475.0" prefHeight="23.0" prefWidth="129.0" promptText="Cantidad" />
+                  <ImageView id="Ti Pa Kay" fitHeight="96.0" fitWidth="132.0" layoutX="427.0" layoutY="374.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@/tipakay.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="663.0" layoutY="357.0" text="Tortilla de Pollo" />
+                  <TextField layoutX="643.0" layoutY="475.0" prefHeight="23.0" prefWidth="129.0" promptText="Cantidad" />
+                  <ImageView id="Tortilla_de_Pollo" fitHeight="93.0" fitWidth="140.0" layoutX="646.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/tortilladepollo.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Bebidas">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView id="Agua_San_Luis" fitHeight="120.0" fitWidth="162.0" layoutX="41.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/aguasanluis.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="64.0" layoutY="19.0" text="Agua San Luis" />
+                  <TextField fx:id="product_201" layoutX="27.0" layoutY="175.0" promptText="Cantidad" />
+                  <TextField fx:id="product_202" layoutX="240.0" layoutY="176.0" promptText="Cantidad" />
+                  <Label layoutX="264.0" layoutY="20.0" text="Coca Cola Personal" />
+                  <ImageView id="Coca_Cola_Personal" fitHeight="120.0" fitWidth="162.0" layoutX="254.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/cocacolapersonal.png" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="452.0" layoutY="176.0" promptText="Cantidad" />
+                  <Label layoutX="463.0" layoutY="20.0" text="Coca Cola Zero Personal" />
+                  <ImageView id="Coca_Cola_Zero_Personal" fitHeight="120.0" fitWidth="162.0" layoutX="447.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/cocacolazeropersonal.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="672.0" layoutY="175.0" promptText="Cantidad" />
+                  <Label layoutX="709.0" layoutY="19.0" text="Fanta Personal" />
+                  <ImageView id="Fanta_Personal" fitHeight="120.0" fitWidth="162.0" layoutX="686.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/fantapersonal.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Coca_Cola_Zero_1.5LT" fitHeight="120.0" fitWidth="162.0" layoutX="687.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/cocacolazero15.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="690.0" layoutY="229.0" text="Coca Cola Zero 1.5LT" />
+                  <TextField layoutX="673.0" layoutY="385.0" promptText="Cantidad" />
+                  <ImageView id="Coca_Cola_1.5LT" fitHeight="120.0" fitWidth="162.0" layoutX="469.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/cocacola15.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="487.0" layoutY="230.0" text="Coca Cola 1.5LT" />
+                  <TextField layoutX="453.0" layoutY="386.0" promptText="Cantidad" />
+                  <ImageView id="Sprite_Personal" fitHeight="120.0" fitWidth="162.0" layoutX="255.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/spritepersonal.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="274.0" layoutY="230.0" text="Sprite Personal" />
+                  <TextField layoutX="241.0" layoutY="386.0" promptText="Cantidad" />
+                  <TextField layoutX="28.0" layoutY="385.0" promptText="Cantidad" />
+                  <Label layoutX="54.0" layoutY="229.0" text="Inka Cola Personal" />
+                  <ImageView id="Inka_Cola_Personal" fitHeight="120.0" fitWidth="162.0" layoutX="42.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/inkacolapersonal.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Guarniciones">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView id="Min_Pao" fitHeight="137.0" fitWidth="178.0" layoutX="46.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/minpao.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="102.0" layoutY="26.0" text="Min Pao" />
+                  <TextField fx:id="product_301" layoutX="50.0" layoutY="201.0" promptText="Cantidad" />
+                  <TextField fx:id="product_302" layoutX="256.0" layoutY="201.0" promptText="Cantidad" />
+                  <Label layoutX="267.0" layoutY="26.0" text="Porcion de Arroz Blanco" />
+                  <ImageView id="Porcion_de_Arroz_Blanco" fitHeight="137.0" fitWidth="178.0" layoutX="262.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/porcionarrozblanco.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="474.0" layoutY="201.0" promptText="Cantidad" />
+                  <Label layoutX="526.0" layoutY="26.0" text="Siu Mai" />
+                  <ImageView id="Siu_Mai" fitHeight="137.0" fitWidth="178.0" layoutX="474.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/siumai.png" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="682.0" layoutY="201.0" promptText="Cantidad" />
+                  <Label layoutX="693.0" layoutY="26.0" text="Porcion de Wantan Frito" />
+                  <ImageView id="Porcion_de_Wantan_Frito" fitHeight="135.0" fitWidth="156.0" layoutX="679.0" layoutY="52.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@/wantafrito.jpeg" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+   </TabPane>
+   <Button fx:id="btn_procesar" layoutX="175.0" layoutY="620.0" mnemonicParsing="false" text="Procesar" onAction="#handleProcesar" />
+   <Button layoutX="535.0" layoutY="620.0" mnemonicParsing="false" text="Mostrar Resumen" />
+   <Button layoutX="408.0" layoutY="620.0" mnemonicParsing="false" text="Limpiar Campos" />
+   <Button fx:id="volverButton" layoutX="303.0" layoutY="620.0" mnemonicParsing="false" onAction="#handleVolver" text="Volver" />
+</Pane>

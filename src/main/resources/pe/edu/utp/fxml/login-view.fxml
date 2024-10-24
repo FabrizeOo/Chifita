@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.utp.controladores.LoginController">
+
+    <children>
+        <Label layoutX="240.0" layoutY="24.0" text="LOGIN">
+            <font>
+                <Font size="39.0" />
+            </font>
+        </Label>
+
+        <ImageView fitHeight="138.0" fitWidth="149.0" layoutX="221.0" layoutY="69.0">
+            <image>
+                <Image url="@/favicon.png" />
+            </image>
+        </ImageView>
+
+        <TextField fx:id="usernameField" layoutX="225.0" layoutY="224.0" promptText="Usuario" />
+        <PasswordField fx:id="passwordField" layoutX="226.0" layoutY="265.0" promptText="Contraseña" />
+
+        <Button layoutX="257.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleLogin" text="Iniciar Sesión" />
+    </children>
+</AnchorPane>
