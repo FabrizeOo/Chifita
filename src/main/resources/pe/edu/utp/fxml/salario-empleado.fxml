@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+       <VBox alignment="center" prefHeight="400" prefWidth="600" spacing="20" style="-fx-padding: 20;">
+          <children>
+      
+              <!-- Título -->
+              <Label style="-fx-font-size: 24px;" text="PAGOS EMPLEADOS" />
+      
+              <!-- Formulario de búsqueda -->
+              <HBox spacing="10">
+         <children>
+                     <Label text="Código empleado:" />
+                     <TextField fx:id="txtCodigoEmpleado" promptText="Ingrese código" />
+                     <Button fx:id="btnBuscar" text="Buscar" />
+                     <Label text="Salario:" />
+                     <TextField fx:id="txtSalario" promptText="Ingrese salario" />
+         </children>
+              </HBox>
+      
+              <!-- Contenedor principal con la tabla y los botones al lado -->
+              <HBox spacing="20">
+         <children>
+                     <!-- Tabla de empleados -->
+                     <TableView fx:id="tablaEmpleados" prefHeight="200">
+                         <columns>
+                             <TableColumn fx:id="colID" text="ID" />
+                             <TableColumn fx:id="colNombres" text="Nombres" />
+                             <TableColumn fx:id="colApellidos" text="Apellidos" />
+                             <TableColumn fx:id="colCargo" text="Cargo" />
+                             <TableColumn fx:id="colSalario" text="Salario" />
+                         </columns>
+                     </TableView>
+         
+                     <!-- Botones alineados verticalmente -->
+                     <VBox spacing="10">
+            <children>
+                            <Button fx:id="btnEditar" prefWidth="100" text="Editar" />
+                            <Button fx:id="btnEliminar" prefWidth="100" text="Eliminar" />
+                            <Button fx:id="btnRegresar" prefWidth="100" text="Regresar" />
+            </children>
+                     </VBox>
+         </children>
+              </HBox>
+          </children>
+   
+       </VBox>
+   </children>
+</AnchorPane>

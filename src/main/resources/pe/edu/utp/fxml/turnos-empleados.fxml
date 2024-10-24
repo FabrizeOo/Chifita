@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+       <VBox alignment="center" prefHeight="400" prefWidth="600" spacing="20" style="-fx-padding: 20;">
+          <children>
+      
+              <!-- Título -->
+              <Label style="-fx-font-size: 24px;" text="Panel de Turnos de Empleados" />
+      
+              <!-- Contenido -->
+              <HBox spacing="40">
+         <children>
+                     <!-- Selector de Fecha -->
+                     <VBox spacing="10">
+                        <children>
+                            <Label text="Seleccione la Fecha" />
+                            <DatePicker fx:id="calendarioTurnos" />
+                        </children>
+                     </VBox>
+         
+                     <!-- Formulario de Asignación de Turnos -->
+                     <VBox spacing="10">
+            <children>
+                            <Label style="-fx-font-size: 18px;" text="Asignar nuevo turno" />
+            
+                            <Label text="Empleado:" />
+                            <ComboBox fx:id="comboEmpleados" promptText="Seleccionar empleado" />
+            
+                            <Label text="Hora de Inicio:" />
+                            <TextField fx:id="horaInicio" promptText="00:00" />
+            
+                            <Label text="Hora de Fin:" />
+                            <TextField fx:id="horaFin" promptText="00:00" />
+            
+                            <Button fx:id="btnAsignarTurno" text="Asignar nuevo turno" />
+                            <Button fx:id="btnRetroceder" text="Salir" />
+            </children>
+                     </VBox>
+         </children>
+              </HBox>
+          </children>
+       </VBox>
+   </children>
+</AnchorPane>

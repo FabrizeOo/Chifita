@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.util.Callback?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+
+        <!-- Contenedor Principal -->
+        <VBox prefHeight="600" prefWidth="900" spacing="20" style="-fx-padding: 20; -fx-background-color: #F5F5F5;">
+            <children>
+
+                <!-- Título Principal del Panel -->
+                <Label style="-fx-font-size: 28px; -fx-font-weight: bold;" text="Panel de Fidelización de Clientes" />
+
+                <!-- Pestañas Superiores -->
+                <TabPane tabClosingPolicy="UNAVAILABLE" tabMaxWidth="200" tabMinWidth="150">
+                    <tabs>
+
+                        <!-- Pestaña Clientes -->
+                        <Tab closable="false" text="Clientes">
+                            <content>
+                                <AnchorPane>
+                                    <children>
+                                        <VBox spacing="20" style="-fx-padding: 20; -fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10;">
+                                            <children>
+
+                                                <!-- Título Registro de Clientes -->
+                                                <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Registro de Clientes Frecuentes" />
+                                                <Label style="-fx-font-size: 14px; -fx-text-fill: #888888;" text="Agrega nuevos clientes al programa de fidelización" />
+
+                                                <!-- Formulario de Clientes -->
+                                                <HBox alignment="center" spacing="20">
+                                                    <children>
+                                                        <!-- VBox para el campo Nombre -->
+                                                        <VBox spacing="10">
+                                                            <children>
+                                                                <Label text="Nombre" />
+                                                                <TextField fx:id="txtNombre" promptText="Ingrese nombre" />
+                                                            </children>
+                                                        </VBox>
+
+                                                        <!-- VBox para el campo Email -->
+                                                        <VBox spacing="10">
+                                                            <children>
+                                                                <Label text="Email" />
+                                                                <TextField fx:id="txtEmail" promptText="Ingrese email" />
+                                                            </children>
+                                                        </VBox>
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Botón Agregar Cliente -->
+                                                <Button fx:id="btnAgregarCliente" style="-fx-background-color: black; -fx-text-fill: white; -fx-font-size: 16px; -fx-pref-width: 300px; -fx-padding: 10;" text="Agregar Cliente" translateX="150.0" />
+
+                                                <!-- Tabla de Clientes -->
+                                                <TableView fx:id="tablaClientes" prefHeight="200">
+                                                    <columns>
+                                                        <TableColumn fx:id="colNombre" prefWidth="200" text="Nombre" />
+                                                        <TableColumn fx:id="colEmail" prefWidth="300" text="Email" />
+                                                        <TableColumn fx:id="colPuntos" prefWidth="100" text="Puntos" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+
+                        <!-- Pestaña Asignar Puntos -->
+                        <Tab closable="false" text="Asignar Puntos">
+                            <content>
+                                <AnchorPane>
+                                    <children>
+                                        <VBox prefHeight="444.0" prefWidth="860.0" spacing="20" style="-fx-padding: 20; -fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10;">
+                                            <children>
+
+                                                <!-- Título Asignación de Puntos -->
+                                                <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Asignación de Puntos" />
+                                                <Label style="-fx-font-size: 14px; -fx-text-fill: #888888;" text="Asigna puntos a los clientes por sus compras" />
+
+                                                <!-- Tabla de Clientes para Asignación de Puntos -->
+                                                <TableView fx:id="tablaAsignarPuntos" prefHeight="313.0" prefWidth="820.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="colNombreAsignar" prefWidth="274.0" text="Nombre" />
+                                                        <TableColumn fx:id="colPuntosActuales" prefWidth="258.0" text="Puntos Actuales" />
+
+                                                        <!-- Columna con HBox personalizado -->
+                                                        <TableColumn fx:id="colAsignarPuntos" prefWidth="287.0" text="Asignar Puntos">
+                                                            <cellFactory>
+
+                                                            </cellFactory>
+                                                        </TableColumn>
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+
+                        <!-- Pestaña Recompensas -->
+                        <Tab closable="false" text="Recompensas">
+                            <content>
+                                <AnchorPane>
+                                    <children>
+                                        <VBox spacing="20" style="-fx-padding: 20; -fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10;">
+                                            <children>
+
+                                                <!-- Título Recompensas -->
+                                                <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Recompensas Disponibles" />
+                                                <Label style="-fx-font-size: 14px; -fx-text-fill: #888888;" text="Lista de recompensas que los clientes pueden canjear" />
+
+                                                <!-- Tabla de Recompensas -->
+                                                <TableView fx:id="tablaRecompensas" prefHeight="300">
+                                                    <columns>
+                                                        <TableColumn fx:id="colRecompensa" prefWidth="200" text="Recompensa" />
+                                                        <TableColumn fx:id="colPuntosRequeridos" prefWidth="150" text="Puntos Requeridos" />
+                                                        <TableColumn fx:id="colDescripcion" prefWidth="250" text="Descripción" />
+                                                        <TableColumn fx:id="colAplicar" prefWidth="200" text="Aplicar" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+
+                </TabPane>
+            </children>
+
+        </VBox>
+    </children>
+</AnchorPane>
