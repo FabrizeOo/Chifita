@@ -1,81 +1,99 @@
 package pe.edu.utp.controladores;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import pe.edu.utp.dao.impl.EmpleadoDAOImpl;
 import pe.edu.utp.modelos.Empleado;
+import pe.edu.utp.dao.EmpleadoDAO;
+import pe.edu.utp.dao.impl.EmpleadoDAOImpl;
 import pe.edu.utp.utilidades.Conexionsecu;
 
 import java.util.List;
 
 public class EmpleadoController {
-    @FXML
-    private TableView<Empleado> tableView;
-    @FXML
-    private TableColumn<Empleado, Integer> idColumn;
-    @FXML
-    private TableColumn<Empleado, String> nombreColumn;
-    @FXML
-    private TableColumn<Empleado, String> apellidoColumn;
-    @FXML
-    private TableColumn<Empleado, String> nombreUsuarioColumn;
-    @FXML
-    private TableColumn<Empleado, String> cargoColumn;
-    @FXML
-    private TextField nombreField;
-    @FXML
-    private TextField apellidoField;
-    @FXML
-    private TextField nombreUsuarioField;
-    @FXML
-    private TextField contrasenaField;
-    @FXML
-    private TextField cargoField;
 
-    private EmpleadoDAOImpl empleadoDAO;
+    @FXML private TableView<Empleado> tableView;
+    @FXML private TableColumn<Empleado, Integer> idColumn;
+    @FXML private TableColumn<Empleado, String> nombreColumn;
+    @FXML private TableColumn<Empleado, String> apellidoColumn;
+    @FXML private TableColumn<Empleado, String> nombreUsuarioColumn;
+    @FXML private TableColumn<Empleado, String> cargoColumn;
+    @FXML private TableColumn<Empleado, Boolean> actividadColumn;
+
+
+    @FXML private TextField nombreField;
+    @FXML private TextField apellidoField;
+    @FXML private TextField nombreUsuarioField;
+    @FXML private TextField contrasenaField;
+    @FXML private ComboBox<String> cargoComboBox;
+
+    private EmpleadoDAO empleadoDAO;
+    private ObservableList<Empleado> empleados;
 
     public EmpleadoController() {
-        Conexionsecu conexion = new Conexionsecu(); // Usa tu conexión
-        empleadoDAO = new EmpleadoDAOImpl(conexion);
+        // Inicializar el DAO aquí
+        this.empleadoDAO = new EmpleadoDAOImpl(new Conexionsecu());
     }
 
     @FXML
     public void initialize() {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id_usuario"));
-        nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        apellidoColumn.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        nombreUsuarioColumn.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
-        cargoColumn.setCellValueFactory(new PropertyValueFactory<>("cargo"));
+        // Inicializar el ComboBox con los cargos
+        cargoComboBox.getItems().addAll("Recepcionista", "Mozo", "Rey");
 
+        // Configurar las columnas de la tabla
+        idColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId_usuario()).asObject());
+        nombreColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+        apellidoColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getApellido()));
+        nombreUsuarioColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombreUsuario()));
+        cargoColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCargo()));
+        actividadColumn.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().getActividad()));
+
+        // Cargar empleados en la tabla
         cargarEmpleados();
+
+        // Configurar la selección de la tabla
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                mostrarEmpleado(newSelection);
+            }
+        });
     }
 
     private void cargarEmpleados() {
-        List<Empleado> empleados = empleadoDAO.leerTodosEmpleados();
-        System.out.println("Número de empleados cargados: " + empleados.size()); // Debug
-        tableView.getItems().setAll(empleados);
+        List<Empleado> empleadoList = empleadoDAO.leerTodosEmpleados();
+        empleados = FXCollections.observableArrayList(empleadoList);
+        tableView.setItems(empleados);
     }
 
+    private void mostrarEmpleado(Empleado empleado) {
+        nombreField.setText(empleado.getNombre());
+        apellidoField.setText(empleado.getApellido());
+        nombreUsuarioField.setText(empleado.getNombreUsuario());
+        contrasenaField.setText(empleado.getContrasena());
+        cargoComboBox.setValue(empleado.getCargo());
+
+    }
 
     @FXML
     private void agregarEmpleado() {
-        try {
-            Empleado nuevoEmpleado = new Empleado(
-                    obtenerNuevoId(),
-                    nombreField.getText(),
-                    apellidoField.getText(),
-                    nombreUsuarioField.getText(),
-                    contrasenaField.getText(),
-                    cargoField.getText(),
-                    false // o false
-            );
-            empleadoDAO.crearEmpleado(nuevoEmpleado);
-            System.out.println("Empleado agregado: " + nuevoEmpleado.getNombre()); // Debug
-            cargarEmpleados();
-        } catch (IllegalArgumentException e) {
-            mostrarMensajeDeError(e.getMessage());
-        }
+        int nuevoId = empleadoDAO.obtenerUltimoId() + 1; // Obtener el último ID y sumarle 1
+
+        Empleado nuevoEmpleado = new Empleado(
+                nuevoId,
+                nombreField.getText(),
+                apellidoField.getText(),
+                nombreUsuarioField.getText(),
+                contrasenaField.getText(),
+                cargoComboBox.getValue(),
+                true // Establecer como activo
+        );
+        empleadoDAO.crearEmpleado(nuevoEmpleado);
+        cargarEmpleados();
+        limpiarCampos();
     }
 
 
@@ -83,10 +101,14 @@ public class EmpleadoController {
     private void editarEmpleado() {
         Empleado empleadoSeleccionado = tableView.getSelectionModel().getSelectedItem();
         if (empleadoSeleccionado != null) {
-            // Implementa la lógica para editar el empleado
-            // Similar al método agregarEmpleado
-        } else {
-            mostrarMensajeDeError("Selecciona un empleado para editar.");
+            empleadoSeleccionado.setNombre(nombreField.getText());
+            empleadoSeleccionado.setApellido(apellidoField.getText());
+            empleadoSeleccionado.setNombreUsuario(nombreUsuarioField.getText());
+            empleadoSeleccionado.setContrasena(contrasenaField.getText());
+            empleadoSeleccionado.setCargo(cargoComboBox.getValue());
+            empleadoDAO.actualizarEmpleado(empleadoSeleccionado);
+            cargarEmpleados();
+            limpiarCampos();
         }
     }
 
@@ -96,22 +118,25 @@ public class EmpleadoController {
         if (empleadoSeleccionado != null) {
             empleadoDAO.eliminarEmpleado(empleadoSeleccionado.getId_usuario());
             cargarEmpleados();
-        } else {
-            mostrarMensajeDeError("Selecciona un empleado para eliminar.");
+            limpiarCampos();
         }
     }
 
-    private int obtenerNuevoId() {
-        // Lógica para generar un nuevo ID, por ejemplo, el ID más alto + 1
-        return empleadoDAO.leerTodosEmpleados().size() + 1; // Simple, mejora para producción
+    @FXML
+    private void desconectarEmpleado() {
+        Empleado empleadoSeleccionado = tableView.getSelectionModel().getSelectedItem();
+        if (empleadoSeleccionado != null) {
+            empleadoDAO.desconectarEmpleado(empleadoSeleccionado.getId_usuario());
+            cargarEmpleados();
+            limpiarCampos();
+        }
     }
 
-    private void mostrarMensajeDeError(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
+    private void limpiarCampos() {
+        nombreField.clear();
+        apellidoField.clear();
+        nombreUsuarioField.clear();
+        contrasenaField.clear();
+        cargoComboBox.setValue(null);
     }
-
 }

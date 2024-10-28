@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="513.0" prefWidth="737.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="pe.edu.utp.controladores.EmpleadoController">
+<Pane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="pe.edu.utp.controladores.EmpleadoController">
     <children>
         <TableView fx:id="tableView" layoutX="29.0" layoutY="168.0" prefHeight="312.0" prefWidth="503.0">
             <columns>
@@ -12,20 +12,24 @@
                 <TableColumn fx:id="apellidoColumn" prefWidth="96.0" text="Apellido" />
                 <TableColumn fx:id="nombreUsuarioColumn" prefWidth="110.0" text="Nombre Usuario" />
                 <TableColumn fx:id="cargoColumn" prefWidth="94.0" text="Cargo" />
+                <TableColumn fx:id="actividadColumn" prefWidth="75.0" text="Actividad" /> <!-- Nueva columna -->
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
+
         <TextField fx:id="nombreField" layoutX="29.0" layoutY="75.0" promptText="Nombre" />
         <TextField fx:id="apellidoField" layoutX="190.0" layoutY="75.0" promptText="Apellido" />
         <TextField fx:id="nombreUsuarioField" layoutX="29.0" layoutY="124.0" promptText="Nombre Usuario" />
-        <TextField fx:id="contrasenaField" layoutX="190.0" layoutY="124.0" promptText="ID" />
-        <TextField fx:id="cargoField" layoutX="361.0" layoutY="75.0" promptText="Cargo" />
-        <Button layoutX="619.0" layoutY="168.0" mnemonicParsing="false" text="Agregar" onAction="#agregarEmpleado" />
-        <Button layoutX="619.0" layoutY="227.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Editar" onAction="#editarEmpleado" />
-        <Button layoutX="619.0" layoutY="285.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Eliminar" textFill="RED" onAction="#eliminarEmpleado" />
+        <TextField fx:id="contrasenaField" layoutX="190.0" layoutY="124.0" promptText="Contraseña" />
         <ComboBox fx:id="cargoComboBox" layoutX="361.0" layoutY="75.0" prefWidth="150.0" promptText="Cargo" />
-        <Button layoutX="574.0" layoutY="368.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Desconectar Empleado" textFill="RED" />
+
+        <Button layoutX="619.0" layoutY="168.0" mnemonicParsing="false" text="Agregar" onAction="#agregarEmpleado" />
+        <Button layoutX="619.0" layoutY="227.0" mnemonicParsing="false" text="Editar" onAction="#editarEmpleado" />
+        <Button layoutX="619.0" layoutY="285.0" mnemonicParsing="false" text="Eliminar" textFill="RED" onAction="#eliminarEmpleado" />
+        <Button layoutX="574.0" layoutY="368.0" mnemonicParsing="false" text="Desconectar Empleado" textFill="RED" onAction="#desconectarEmpleado" />
+
+        <Label layoutX="29.0" layoutY="50.0" text="Datos del Empleado" />
     </children>
 </Pane>

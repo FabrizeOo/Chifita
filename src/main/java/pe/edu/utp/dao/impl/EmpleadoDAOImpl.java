@@ -43,7 +43,7 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
                         rs.getInt("id_usuario"),
                         rs.getString("nombre"),
                         rs.getString("apellido"),
-                        rs.getString("nombreUsuario"), // Cambiado aquí
+                        rs.getString("nombreUsuario"),
                         rs.getString("contrasena"),
                         rs.getString("cargo"),
                         rs.getBoolean("actividad")
@@ -65,7 +65,7 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
                         rs.getInt("id_usuario"),
                         rs.getString("nombre"),
                         rs.getString("apellido"),
-                        rs.getString("nombreUsuario"), // Cambiado aquí
+                        rs.getString("nombreUsuario"),
                         rs.getString("contrasena"),
                         rs.getString("cargo"),
                         rs.getBoolean("actividad")
@@ -79,13 +79,14 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 
     @Override
     public void actualizarEmpleado(Empleado empleado) {
-        String sql = "UPDATE usuarios SET nombre = ?, apellido = ?, nombreUsuario = ?, actividad = ? WHERE id_usuario = ?";
+        String sql = "UPDATE usuarios SET nombre = ?, apellido = ?, nombreUsuario = ?, cargo = ?, actividad = ? WHERE id_usuario = ?";
         try (Connection conn = conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, empleado.getNombre());
             stmt.setString(2, empleado.getApellido());
-            stmt.setString(3, empleado.getNombreUsuario()); // Cambiado aquí
-            stmt.setBoolean(4, empleado.getActividad());
-            stmt.setInt(5, empleado.getId_usuario());
+            stmt.setString(3, empleado.getNombreUsuario());
+            stmt.setString(4, empleado.getCargo());
+            stmt.setBoolean(5, empleado.getActividad());
+            stmt.setInt(6, empleado.getId_usuario());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -102,4 +103,30 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void desconectarEmpleado(int id) {
+        String sql = "UPDATE usuarios SET actividad = ? WHERE id_usuario = ?";
+        try (Connection conn = conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setBoolean(1, false); // Cambiar a inactivo
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public int obtenerUltimoId() {
+        String sql = "SELECT MAX(id_usuario) AS max_id FROM usuarios";
+        try (Connection conn = conexion.conectar(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("max_id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0; // Si no se encuentra, devolvemos 0
+    }
+
 }
