@@ -1,23 +1,25 @@
 package pe.edu.utp.modelos;
 
-import javafx.beans.value.ObservableValue;
-
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Reserva {
     private int id_reserva;
     private int id_cliente;
     private int id_usuario;
-    private Date fecha;
+    private LocalDateTime fecha; // Cambiado a LocalDateTime
     private int id_mesa;
 
     // Constructor
-    public Reserva(int id_reserva, int id_cliente, int id_usuario, Date fecha, int id_mesa) {
+    public Reserva(int id_reserva, int id_cliente, int id_usuario, LocalDateTime fecha, int id_mesa) {
         this.id_reserva = id_reserva;
         this.id_cliente = id_cliente;
         this.id_usuario = id_usuario;
         this.fecha = fecha;
         this.id_mesa = id_mesa;
+    }
+
+    public Reserva(int idReserva, int idCliente, int idUsuario, Date date, int idMesa) {
     }
 
     // Getters
@@ -33,8 +35,8 @@ public class Reserva {
         return id_usuario;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public LocalDateTime getFecha() {
+        return fecha; // Cambiado a LocalDateTime
     }
 
     public int getId_mesa() {
@@ -54,7 +56,7 @@ public class Reserva {
         this.id_usuario = id_usuario;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDateTime fecha) { // Cambiado a LocalDateTime
         this.fecha = fecha;
     }
 
@@ -62,4 +64,14 @@ public class Reserva {
         this.id_mesa = id_mesa;
     }
 
+    @Override
+    public String toString() {
+        return "Reserva{" +
+                "id_reserva=" + id_reserva +
+                ", id_cliente=" + id_cliente +
+                ", id_usuario=" + id_usuario +
+                ", fecha=" + fecha +
+                ", id_mesa=" + id_mesa +
+                '}';
+    }
 }

@@ -3,21 +3,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.utp.controladores.ReservaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.utp.controladores.ReservaController">
     <children>
-        <TextField fx:id="numeroMesaField" layoutX="180.0" layoutY="65.0" promptText="N° de mesa" style="-fx-prompt-text-fill: rgba(128, 128, 128, 0.7);" />
-        <TextField fx:id="clienteField" layoutX="287.0" layoutY="109.0" promptText="Cliente" style="-fx-prompt-text-fill: rgba(128, 128, 128, 0.7);" />
-        <TextField fx:id="fechaReservaField" layoutX="405.0" layoutY="65.0" promptText="Fecha de Reserva" />
-        <TableView fx:id="tablaReservas" layoutX="62.0" layoutY="162.0" prefHeight="273.0" prefWidth="514.0" style="-fx-border-radius: 5px; -fx-padding: 10px; -fx-font-size: 14px;">
+        <TextField fx:id="numeroMesaField" layoutX="20.0" layoutY="20.0" promptText="N° de mesa" style="-fx-prompt-text-fill: rgba(128, 128, 128, 0.7);" />
+        <TextField fx:id="clienteField" layoutX="180.0" layoutY="20.0" promptText="Cliente" style="-fx-prompt-text-fill: rgba(128, 128, 128, 0.7);" />
+        <TextField fx:id="fechaReservaField" layoutX="350.0" layoutY="20.0" promptText="Fecha de Reserva (yyyy-MM-dd HH:mm)" style="-fx-prompt-text-fill: rgba(128, 128, 128, 0.7);" />
+
+        <Button layoutX="620.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleAgregar" text="Agregar" />
+        <Button layoutX="620.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleEditar" text="Editar" />
+        <Button layoutX="620.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleEliminar" text="Eliminar" />
+
+        <TableView fx:id="tablaReservas" layoutX="20.0" layoutY="70.0" prefHeight="400.0" prefWidth="600.0" style="-fx-border-radius: 5px; -fx-padding: 10px; -fx-font-size: 14px;">
             <columns>
-            <TableColumn fx:id="colCliente" prefWidth="75.0" text="Cliente" />
-                <TableColumn fx:id="colFecha" prefWidth="162.0" text="Fecha" />
-                <TableColumn fx:id="colMesa" prefWidth="170.0" text="Mesa" />
+                <TableColumn fx:id="colIdReserva" prefWidth="100.0" text="ID Reserva" />
+                <TableColumn fx:id="colCliente" prefWidth="150.0" text="Cliente" />
+                <TableColumn fx:id="colUsuario" prefWidth="150.0" text="Usuario" />
+                <TableColumn fx:id="colFecha" prefWidth="150.0" text="Fecha" />
+                <TableColumn fx:id="colMesa" prefWidth="150.0" text="Mesa" />
             </columns>
         </TableView>
-        <Button layoutX="624.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleAgregar" text="Agregar" />
-        <Button layoutX="624.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleEditar" prefHeight="25.0" prefWidth="59.0" text="Editar" />
-        <Button layoutX="624.0" layoutY="357.0" mnemonicParsing="false" onAction="#handleEliminar" text="Eliminar" />
-        <Button fx:id="volverButton" layoutX="320.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleVolver" prefHeight="34.0" prefWidth="102.0" text="REGRESAR" />
+
+        <Button fx:id="volverButton" layoutX="320.0" layoutY="490.0" mnemonicParsing="false" onAction="#handleVolver" prefHeight="34.0" prefWidth="102.0" text="REGRESAR" />
     </children>
 </AnchorPane>

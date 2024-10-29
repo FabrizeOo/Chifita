@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+import java.io.IOException;
 
 public class AdminController {
 
@@ -17,18 +18,44 @@ public class AdminController {
     @FXML
     private void handleEmpleados() {
         try {
-            // Cargar el FXML de control-empleado-view
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/pe/edu/utp/fxml/control-empleado-view.fxml"));
-
             Parent root = loader.load();
-
-            // Crear una nueva escena y abrirla
             Stage stage = (Stage) empleadosButton.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Control de Empleados");
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace(); // Manejo de excepciones
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleInventario() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pe/edu/utp/fxml/inventario.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Inventario");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleVentas() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pe/edu/utp/fxml/ventas.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Panel de Ventas");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

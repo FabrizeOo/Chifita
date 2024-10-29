@@ -13,8 +13,8 @@
       </ImageView>
       <Button layoutX="235.0" layoutY="123.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="REGISTRO DEL MENÚ" />
       <Button fx:id="empleadosButton" layoutX="403.0" layoutY="123.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="EMPLEADOS" onAction="#handleEmpleados" />
-      <Button layoutX="235.0" layoutY="188.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="VENTAS" />
-      <Button layoutX="403.0" layoutY="188.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="INVENTARIO" />
+      <Button layoutX="235.0" layoutY="188.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="VENTAS" onAction="#handleVentas" />
+      <Button layoutX="403.0" layoutY="188.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="INVENTARIO" onAction="#handleInventario" />
       <Button layoutX="235.0" layoutY="255.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="MESAS" />
       <Button layoutX="403.0" layoutY="255.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="SALIR" />
    </children>
