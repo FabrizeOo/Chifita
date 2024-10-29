@@ -6,17 +6,18 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <TableView layoutX="35.0" layoutY="116.0" prefHeight="350.0" prefWidth="690.0">
-        <columns>
-          <TableColumn prefWidth="97.0" text="ID Pedido" />
-          <TableColumn prefWidth="88.0" text="ID Producto" />
-            <TableColumn prefWidth="304.0" text="Descripcion" />
-            <TableColumn minWidth="3.0" prefWidth="200.0" text="Cantidad" />
-        </columns>
-      </TableView>
-      <Text layoutX="45.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Arial Black&quot;, Gadget, sans-serif; -fx-font-size: 36px; -fx-text-fill: linear-gradient(to right, #ff7e5f, #feb47b); -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0.5, 1, 1); -fx-background-color: transparent; -fx-padding: 10px;" text="PEDIDOS:" wrappingWidth="193.13671875" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="757.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.utp.controladores.PedidoCocinaController">
+    <children>
+        <TableView fx:id="tablePedidos" layoutX="35.0" layoutY="116.0" prefHeight="350.0" prefWidth="690.0">
+            <columns>
+                <TableColumn fx:id="idPedidoColumn" prefWidth="97.0" text="ID Pedido" />
+                <TableColumn fx:id="descripcionColumn" prefWidth="304.0" text="Descripcion" />
+                <TableColumn fx:id="cantidadColumn" minWidth="3.0" prefWidth="200.0" text="Cantidad" />
+            <TableColumn fx:id="mesaColumn" prefWidth="88.0" text="Mesa" />
+            </columns>
+        </TableView>
+        <Text layoutX="45.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: 'Arial Black', Gadget, sans-serif; -fx-font-size: 36px; -fx-text-fill: linear-gradient(to right, #ff7e5f, #feb47b); -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0.5, 1, 1); -fx-background-color: transparent; -fx-padding: 10px;" text="PEDIDOS:" wrappingWidth="193.13671875" />
+        <Button fx:id="btnEnviarACaja" layoutX="569.0" layoutY="60.0" mnemonicParsing="false" text="Enviar pedido a Caja" />
+        <Button fx:id="btnVolverunu" layoutX="349.0" layoutY="466.0" mnemonicParsing="false" text="VOLVER" />
+    </children>
 </AnchorPane>

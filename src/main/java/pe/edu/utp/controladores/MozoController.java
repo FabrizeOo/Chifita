@@ -20,7 +20,7 @@ public class MozoController {
     private Button btn_salir;
 
     @FXML
-    private Button btn_realizarPedido;
+    private Button btn_verCocina;
 
     @FXML
     private Button btn_verMesas;
@@ -29,6 +29,7 @@ public class MozoController {
     public void initialize() {
         btn_salir.setOnAction(event -> handleSalir());
         btn_verMesas.setOnAction(event -> handleVerMesas());
+        btn_verCocina.setOnAction(event -> handleverCocina());
     }
 
     private void handleSalir() {
@@ -43,6 +44,26 @@ public class MozoController {
         System.exit(0);
     }
 
+    private void handleverCocina() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/pe/edu/utp/fxml/cocina-view.fxml"));
+            Stage stage = (Stage) btn_verCocina.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("PEDIDOS COCINA");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Error", "No se pudo abrir la vista de ver pedidos.", AlertType.ERROR);
+        }
+    }
+
+    private void showAlert(String title, String message, AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     private void handleVerMesas() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/pe/edu/utp/fxml/seleccion-mesas-view.fxml"));
@@ -53,13 +74,5 @@ public class MozoController {
             e.printStackTrace();
             showAlert("Error", "No se pudo abrir la vista de selección de mesas.", AlertType.ERROR);
         }
-    }
-
-    private void showAlert(String title, String message, AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="841.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="14.0" layoutY="94.0" prefHeight="422.0" prefWidth="603.0">
+        <columns>
+          <TableColumn prefWidth="84.0" text="id_pedidocaja" />
+          <TableColumn prefWidth="66.0" text="id_pedido" />
+            <TableColumn prefWidth="229.0" text="descripcion" />
+            <TableColumn minWidth="9.0" prefWidth="54.0" text="cantidad" />
+            <TableColumn prefWidth="93.0" text="fecha" />
+            <TableColumn prefWidth="75.0" text="mesa" />
+        </columns>
+      </TableView>
+      <Label layoutX="36.0" layoutY="22.0" text="CAJA">
+         <font>
+            <Font name="Bell MT" size="29.0" />
+         </font>
+      </Label>
+      <Button layoutX="755.0" layoutY="162.0" mnemonicParsing="false" text="Boleta" />
+      <Button layoutX="753.0" layoutY="214.0" mnemonicParsing="false" text="Factura" />
+      <Button layoutX="755.0" layoutY="267.0" mnemonicParsing="false" text="Volver" />
+   </children>
+</AnchorPane>
