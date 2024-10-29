@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="pe.edu.utp.controladores.EmpleadoController">
+<Pane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.utp.controladores.EmpleadoController">
     <children>
         <TableView fx:id="tableView" layoutX="29.0" layoutY="168.0" prefHeight="312.0" prefWidth="503.0">
             <columns>
@@ -25,11 +26,12 @@
         <TextField fx:id="contrasenaField" layoutX="190.0" layoutY="124.0" promptText="Contraseña" />
         <ComboBox fx:id="cargoComboBox" layoutX="361.0" layoutY="75.0" prefWidth="150.0" promptText="Cargo" />
 
-        <Button layoutX="619.0" layoutY="168.0" mnemonicParsing="false" text="Agregar" onAction="#agregarEmpleado" />
-        <Button layoutX="619.0" layoutY="227.0" mnemonicParsing="false" text="Editar" onAction="#editarEmpleado" />
-        <Button layoutX="619.0" layoutY="285.0" mnemonicParsing="false" text="Eliminar" textFill="RED" onAction="#eliminarEmpleado" />
-        <Button layoutX="574.0" layoutY="368.0" mnemonicParsing="false" text="Desconectar Empleado" textFill="RED" onAction="#desconectarEmpleado" />
+        <Button layoutX="619.0" layoutY="168.0" mnemonicParsing="false" onAction="#agregarEmpleado" text="Agregar" />
+        <Button layoutX="619.0" layoutY="227.0" mnemonicParsing="false" onAction="#editarEmpleado" text="Editar" />
+        <Button layoutX="619.0" layoutY="285.0" mnemonicParsing="false" onAction="#eliminarEmpleado" text="Eliminar" textFill="RED" />
+        <Button layoutX="574.0" layoutY="368.0" mnemonicParsing="false" onAction="#desconectarEmpleado" text="Desconectar Empleado" textFill="RED" />
 
         <Label layoutX="29.0" layoutY="50.0" text="Datos del Empleado" />
+      <Button fx:id="volverButton1" onAction="#handleVolver1" layoutX="616.0" layoutY="438.0" mnemonicParsing="false" text="Volver" />
     </children>
 </Pane>

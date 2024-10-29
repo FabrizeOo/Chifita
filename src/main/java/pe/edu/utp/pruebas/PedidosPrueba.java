@@ -1,4 +1,4 @@
-package pe.edu.utp.aplicacion;
+package pe.edu.utp.pruebas;
 
 import pe.edu.utp.dao.impl.DetallePedidoDAOImpl;
 import pe.edu.utp.dao.impl.PedidoDAOImpl;

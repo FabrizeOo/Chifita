@@ -1,4 +1,4 @@
-package pe.edu.utp.aplicacion;
+package pe.edu.utp.pruebas;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

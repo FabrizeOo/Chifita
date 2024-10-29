@@ -6,7 +6,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import pe.edu.utp.modelos.Empleado;
 import pe.edu.utp.dao.EmpleadoDAO;
 import pe.edu.utp.dao.impl.EmpleadoDAOImpl;
@@ -23,6 +27,8 @@ public class EmpleadoController {
     @FXML private TableColumn<Empleado, String> nombreUsuarioColumn;
     @FXML private TableColumn<Empleado, String> cargoColumn;
     @FXML private TableColumn<Empleado, Boolean> actividadColumn;
+    @FXML
+    private Button volverButton1;
 
 
     @FXML private TextField nombreField;
@@ -138,5 +144,19 @@ public class EmpleadoController {
         nombreUsuarioField.clear();
         contrasenaField.clear();
         cargoComboBox.setValue(null);
+    }
+    @FXML
+    private void handleVolver1() {
+        try {
+            // Cargar la vista del panel principal
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pe/edu/utp/fxml/administrador-view.fxml"));
+            Parent root = loader.load();
+            // Obtener la escena actual
+            Stage stage = (Stage) volverButton1.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace(); // Manejo básico de errores
+        }
     }
 }

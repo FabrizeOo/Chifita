@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -12,10 +13,10 @@
          </image>
       </ImageView>
       <Button layoutX="235.0" layoutY="123.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="REGISTRO DEL MENÚ" />
-      <Button fx:id="empleadosButton" layoutX="403.0" layoutY="123.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="EMPLEADOS" onAction="#handleEmpleados" />
+      <Button fx:id="empleadosButton" layoutX="403.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleEmpleados" prefHeight="25.0" prefWidth="157.0" text="EMPLEADOS" />
       <Button layoutX="235.0" layoutY="188.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="VENTAS" />
       <Button layoutX="403.0" layoutY="188.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="INVENTARIO" />
-      <Button layoutX="235.0" layoutY="255.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="MESAS" />
-      <Button layoutX="403.0" layoutY="255.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="SALIR" />
+      <Button layoutX="235.0" layoutY="244.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="MESAS" />
+      <Button fx:id="btn_salir1" layoutX="403.0" layoutY="244.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="SALIR" />
    </children>
 </Pane>

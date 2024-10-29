@@ -15,5 +15,7 @@ module pe.edu.utp.aplicacion {
     opens pe.edu.utp.modelos to javafx.base; // Abre el paquete de modelos para JavaFX
 
     exports pe.edu.utp.aplicacion;
-    exports pe.edu.utp.controladores; // Asegúrate de exportar el paquete de controladores
+    exports pe.edu.utp.controladores;
+    exports pe.edu.utp.pruebas;
+    opens pe.edu.utp.pruebas to javafx.fxml; // Asegúrate de exportar el paquete de controladores
 }
