@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+
+        <!-- Contenedor Principal -->
+        <VBox layoutX="-6.0" prefHeight="782.0" prefWidth="950" spacing="20" style="-fx-padding: 20; -fx-background-color: #F5F5F5;">
+            <children>
+
+                <!-- Título Principal del Panel -->
+                <Label style="-fx-font-size: 28px; -fx-font-weight: bold;" text="Panel de Fidelización de Clientes" />
+
+                <!-- Pestañas Superiores -->
+                <TabPane prefHeight="680" prefWidth="920" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="200" tabMinWidth="150">
+                    <tabs>
+
+                        <!-- Pestaña Clientes -->
+                        <Tab closable="false" text="Clientes">
+                            <content>
+                                <AnchorPane>
+                                    <children>
+                                        <VBox layoutX="20.0" layoutY="20.0" prefHeight="600.0" prefWidth="880.0" spacing="20" style="-fx-padding: lead; -fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10;">
+                                            <children>
+
+                                                <!-- Título Registro de Clientes -->
+                                                <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Sistema de Fidelización de Clientes" />
+                                                <Label style="-fx-font-size: 14px; -fx-text-fill: #888888;" text="Encuentra clientes ya registrados para invitarlos al programa de recompensas" />
+
+                                                <!-- Campo de Búsqueda de Cliente -->
+                                                <HBox alignment="center" spacing="10">
+                                                    <children>
+                                                        <TextField fx:id="txtBuscarCliente" promptText="Ingrese nombre o email del cliente" prefWidth="300" />
+                                                        <Button fx:id="btnBuscarCliente" onAction="#buscarCliente" text="Buscar" />
+                                                    </children>
+                                                </HBox>
+
+                                                <!-- Resultados de la Búsqueda -->
+                                                <VBox spacing="10" visible="false" fx:id="resultadoBusqueda">
+                                                    <children>
+                                                        <!-- Información del Cliente Encontrado -->
+                                                        <Label style="-fx-font-size: 16px;" text="Información del Cliente" />
+                                                        <HBox spacing="10">
+                                                            <children>
+                                                                <Label text="Nombre: " />
+                                                                <Label fx:id="lblNombreCliente" style="-fx-font-weight: bold;" text="Ninguno" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox spacing="10">
+                                                            <children>
+                                                                <Label text="Email: " />
+                                                                <Label fx:id="lblEmailCliente" style="-fx-font-weight: bold;" text="Ninguno" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox spacing="10">
+                                                            <children>
+                                                                <Label text="Puntos Actuales: " />
+                                                                <Label fx:id="lblPuntosCliente" style="-fx-font-weight: bold;" text="0" />
+                                                            </children>
+                                                        </HBox>
+
+                                                        <!-- Botón para Participar en el Programa de Recompensas -->
+                                                        <Button fx:id="btnParticiparRecompensas" onAction="#invitarParticipacion" style="-fx-background-color: black; -fx-text-fill: white;" text="Invitar al Programa de Recompensas" />
+                                                    </children>
+                                                </VBox>
+
+                                                <!-- Tabla de Clientes Registrados -->
+                                                <TableView fx:id="tablaClientes" prefHeight="400" prefWidth="800">
+                                                    <columns>
+                                                        <TableColumn fx:id="colNombre" prefWidth="289.0" text="Cliente" />
+                                                        <TableColumn fx:id="colEmail" prefWidth="321.0" text="Email" />
+                                                        <TableColumn fx:id="colPuntos" prefWidth="207.0" text="Puntos" />
+                                                    </columns>
+                                                </TableView>
+
+                                                <!-- Botón Salir -->
+                                                <Button fx:id="btnSalir" alignment="CENTER_RIGHT" onAction="#salirAplicacion" style="-fx-font-size: 14px;" text="Regresar" translateX="390.0" />
+
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+
+                        <!-- Pestaña Asignar Puntos -->
+                        <Tab closable="false" text="Asignar Puntos">
+                            <content>
+                                <AnchorPane>
+                                    <children>
+                                        <VBox layoutX="20.0" layoutY="20.0" prefHeight="600.0" prefWidth="880.0" spacing="20" style="-fx-padding: 20; -fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10;">
+                                            <children>
+
+                                                <!-- Título Asignación de Puntos -->
+                                                <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Asignación de Puntos a Clientes" />
+
+                                                <!-- Contenedor para Tabla de Clientes y Funcionalidades a la Derecha -->
+                                                <HBox spacing="20">
+                                                    <children>
+
+                                                        <!-- Tabla de Clientes a la Izquierda -->
+                                                        <TableView fx:id="tablaAsignarPuntos" prefHeight="400" prefWidth="400">
+                                                            <columns>
+                                                                <TableColumn fx:id="colNombreAsignar" prefWidth="200.0" text="Nombre" />
+                                                                <TableColumn fx:id="colPuntosActuales" prefWidth="200.0" text="Puntos" />
+                                                            </columns>
+                                                        </TableView>
+
+                                                        <!-- Sección de Búsqueda y Asignación de Puntos a la Derecha -->
+                                                        <VBox spacing="10">
+                                                            <children>
+                                                                <!-- Búsqueda de Cliente -->
+                                                                <Label style="-fx-font-size: 14px;" text="Buscar Cliente" />
+                                                                <HBox spacing="5">
+                                                                    <children>
+                                                                        <TextField fx:id="txtBuscar" promptText="Buscar cliente..." />
+                                                                        <Button fx:id="btnBuscar" onAction="#buscarCliente" text="Buscar" />
+                                                                    </children>
+                                                                </HBox>
+
+                                                                <!-- Sección de Asignación de Puntos -->
+                                                                <Label style="-fx-font-size: 14px;" text="Puntos a Asignar:" />
+                                                                <HBox spacing="10">
+                                                                    <children>
+                                                                        <TextField fx:id="txtPuntosAsignar" promptText="Ingrese puntos" />
+                                                                        <Button fx:id="btnAsignarPuntos" onAction="#asignarPuntos" style="-fx-background-color: #333333; -fx-text-fill: white;" text="Asignar" />
+                                                                    </children>
+                                                                </HBox>
+                                                            </children>
+                                                        </VBox>
+
+                                                    </children>
+                                                </HBox>
+                                            </children>
+
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+
+                        <!-- Pestaña Recompensas -->
+                        <Tab closable="false" text="Recompensas">
+                            <content>
+                                <AnchorPane>
+                                    <children>
+                                        <VBox layoutX="20.0" layoutY="20.0" prefHeight="650.0" prefWidth="880.0" spacing="20" style="-fx-padding: 20; -fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 10;">
+                                            <children>
+
+                                                <!-- Título Recompensas -->
+                                                <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Recompensas Disponibles" />
+
+                                                <!-- Tabla de Recompensas -->
+                                                <TableView fx:id="tablaRecompensas" prefHeight="158.0" prefWidth="840.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="colRecompensa" prefWidth="210.0" text="Recompensa" />
+                                                        <TableColumn fx:id="colPuntosRequeridos" prefWidth="177.0" text="Puntos Requeridos" />
+                                                        <TableColumn fx:id="colDescripcion" prefWidth="452.0" text="Descripción" />
+                                                    </columns>
+                                                </TableView>
+
+                                                <!-- Selección de Cliente para Asignación de Recompensa -->
+                                                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Asignar Recompensa a Cliente" />
+
+                                                <!-- Campo de Búsqueda con Sugerencias -->
+                                                <VBox prefHeight="85.0" prefWidth="840.0" spacing="10">
+                                                    <children>
+                                                        <HBox prefHeight="60.0" prefWidth="840.0" spacing="10">
+                                                            <children>
+                                                                <TextField fx:id="txtBuscarCliente" onKeyReleased="#mostrarSugerencias" promptText="Buscar cliente..." />
+                                                                <Button fx:id="btnBuscarCliente" onAction="#buscarCliente" text="Buscar" />
+                                                            </children>
+                                                        </HBox>
+                                                        <ListView fx:id="listaSugerencias" onMouseClicked="#seleccionarSugerencia" prefHeight="100" visible="false" />
+                                                    </children>
+                                                </VBox>
+
+                                                <!-- Información del Cliente Seleccionado -->
+                                                <VBox spacing="10">
+                                                    <children>
+                                                        <Label style="-fx-font-size: 14px;" text="Cliente Seleccionado:" />
+                                                        <HBox spacing="10">
+                                                            <children>
+                                                                <Label text="Nombre: " />
+                                                                <Label fx:id="lblNombreCliente" style="-fx-font-weight: bold;" text="Ninguno" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox spacing="10">
+                                                            <children>
+                                                                <Label text="Puntos Actuales: " />
+                                                                <Label fx:id="lblPuntosClienteSeleccionado" style="-fx-font-weight: bold;" text="0" />
+                                                            </children>
+                                                        </HBox>
+                                                        <HBox spacing="10">
+                                                            <children>
+                                                                <Label text="Email: " />
+                                                                <Label fx:id="lblEmailClienteSeleccionado" style="-fx-font-weight: bold;" text="-" />
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+
+                                                <!-- Información de la Recompensa Seleccionada con ComboBox -->
+                                                <VBox spacing="10">
+                                                    <children>
+                                                        <Label style="-fx-font-size: 14px;" text="Recompensa Seleccionada:" />
+                                                        <HBox spacing="10">
+                                                            <children>
+                                                                <Label text="Recompensa: " />
+                                                                <ComboBox fx:id="comboRecompensaSeleccionada" promptText="Seleccione una recompensa" />
+                                                            </children>
+                                                        </HBox>
+                                                    </children>
+                                                </VBox>
+
+                                                <!-- Botón para Asignar Recompensa -->
+                                                <Button fx:id="btnAsignarRecompensa" onAction="#asignarRecompensa" style="-fx-background-color: #333333; -fx-text-fill: white;" text="Asignar Recompensa" />
+
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+
+                </TabPane>
+            </children>
+
+        </VBox>
+    </children>
+</AnchorPane>
