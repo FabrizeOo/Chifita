@@ -18,4 +18,14 @@ public interface ClienteDAO {
 
         // Eliminar un cliente
         void eliminarCliente(int id);
-    }
+
+        // Actualizar los puntos de un cliente
+        boolean actualizarPuntosCliente(int idCliente, int puntos); // Método nuevo
+
+        // Leer cliente por nombre o email
+        Cliente leerClientePorNombre(String nombre);
+
+        boolean eliminarClientePorId(int idCliente);
+
+}
+

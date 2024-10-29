@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox alignment="center" spacing="20" prefWidth="700" style="-fx-padding: 20;">
+            <children>
+                <!-- Título -->
+                <Label style="-fx-font-size: 24px;" text="Panel de Turnos de Empleados" />
+
+                <!-- Contenido Principal -->
+                <HBox spacing="30">
+                    <children>
+                        <!-- Calendario de Turnos -->
+                        <VBox alignment="center" spacing="15" style="-fx-background-color: #f5f5f5; -fx-padding: 15; -fx-border-radius: 10; -fx-background-radius: 10;">
+                            <children>
+                                <Label style="-fx-font-size: 18px;" text="Calendario de Turnos" />
+                                <Label text="Seleccione una fecha para ver o asignar turnos" />
+                                <DatePicker fx:id="calendarioTurnos" />
+                                <Button fx:id="btnAsignarTurno" text="Asignar Nuevo Turno" style="-fx-background-color: #333333; -fx-text-fill: white;" onAction="#abrirVentanaAsignarTurno"/>
+                            </children>
+                        </VBox>
+
+                        <!-- Vista Detallada de Horarios -->
+                        <VBox alignment="center" spacing="15" style="-fx-background-color: #f5f5f5; -fx-padding: 15; -fx-border-radius: 10; -fx-background-radius: 10;">
+                            <children>
+                                <Label style="-fx-font-size: 18px;" text="Vista Detallada de Horarios" />
+                                <Label text="Turnos para la fecha seleccionada" />
+                                <TableView fx:id="tablaTurnos" prefHeight="200" prefWidth="300">
+                                    <columns>
+                                        <TableColumn fx:id="colEmpleado" text="Empleado" prefWidth="100"/>
+                                        <TableColumn fx:id="colHoraInicio" text="Hora de Inicio" prefWidth="100"/>
+                                        <TableColumn fx:id="colHoraFin" text="Hora de Fin" prefWidth="100"/>
+                                        <TableColumn fx:id="colAcciones" text="Acciones" prefWidth="100"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

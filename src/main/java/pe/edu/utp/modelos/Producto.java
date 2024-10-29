@@ -1,6 +1,5 @@
 package pe.edu.utp.modelos;
 
-// Clase padre
 public class Producto {
     private int id;
     private String nombre;
@@ -22,10 +21,5 @@ public class Producto {
 
     public double getPrecio() {
         return precio;
-    }
-
-    @Override
-    public String toString() {
-        return "ID: " + id + " | " + nombre + " - $" + String.format("%.2f", precio);
     }
 }

@@ -41,7 +41,8 @@ public class ClienteDAOImpl implements ClienteDAO {
                         rs.getString("nombre"),
                         rs.getString("apellido"),
                         rs.getString("telefono"),
-                        rs.getString("email")
+                        rs.getString("email"),
+                        rs.getInt("puntos")  // Obtenemos los puntos del cliente
                 );
             }
         } catch (SQLException e) {
@@ -62,7 +63,8 @@ public class ClienteDAOImpl implements ClienteDAO {
                         rs.getString("nombre"),
                         rs.getString("apellido"),
                         rs.getString("telefono"),
-                        rs.getString("email")
+                        rs.getString("email"),
+                        rs.getInt("puntos")  // Obtenemos los puntos de cada cliente
                 ));
             }
         } catch (SQLException e) {
@@ -79,7 +81,8 @@ public class ClienteDAOImpl implements ClienteDAO {
             stmt.setString(2, cliente.getApellido());
             stmt.setString(3, cliente.getTelefono());
             stmt.setString(4, cliente.getEmail());
-            stmt.setInt(5, cliente.getId_cliente());
+            stmt.setInt(5, cliente.getPuntos());  // Actualizamos los puntos del cliente
+            stmt.setInt(6, cliente.getId_cliente());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,4 +99,59 @@ public class ClienteDAOImpl implements ClienteDAO {
             e.printStackTrace();
         }
     }
+
+    // Método adicional para actualizar solo los puntos de un cliente
+    @Override
+    public boolean actualizarPuntosCliente(int idCliente, int nuevosPuntos) {
+        String sql = "UPDATE clientes SET puntos = ? WHERE id_cliente = ?";
+        try (Connection conn = conexion.conectar();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, nuevosPuntos);
+            pstmt.setInt(2, idCliente);
+            int filasActualizadas = pstmt.executeUpdate();
+            return filasActualizadas > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public Cliente leerClientePorNombre(String nombre) {
+        String sql = "SELECT * FROM clientes WHERE nombre = ?";
+        try (Connection conn = conexion.conectar();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, nombre);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Cliente(
+                        rs.getInt("id_cliente"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("telefono"),
+                        rs.getString("email"),
+                        rs.getInt("puntos") // Asegúrate de que la columna "puntos" exista en la tabla
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public boolean eliminarClientePorId(int idCliente) {
+        String sql = "DELETE FROM clientes WHERE id_cliente = ?";
+        try (Connection conn = conexion.conectar();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, idCliente);
+            int filasEliminadas = pstmt.executeUpdate();
+            return filasEliminadas > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
 }

@@ -7,7 +7,7 @@ import pe.edu.utp.utilidades.Conexionsecu;
 import java.util.List;
 import java.util.Scanner;
 
-public class ClientesPruebas {
+public class    ClientesPruebas {
     private static ClienteDAOImpl clienteDAO;
 
     public static void main(String[] args) {
