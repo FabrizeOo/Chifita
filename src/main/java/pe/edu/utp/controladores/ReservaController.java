@@ -13,10 +13,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import pe.edu.utp.dao.ReservaDAO;
+import pe.edu.utp.dao.impl.ReservaDAOImpl;
 import pe.edu.utp.modelos.Reserva;
+import pe.edu.utp.utilidades.Conexionsecu;
+import pe.edu.utp.modelos.SesionUsuario;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ReservaController {
@@ -31,22 +36,33 @@ public class ReservaController {
     @FXML
     private TableView<Reserva> tablaReservas;
     @FXML
+    private TableColumn<Reserva, Integer> colIdReserva;
+    @FXML
     private TableColumn<Reserva, Integer> colCliente;
+    @FXML
+    private TableColumn<Reserva, String> colUsuario;
     @FXML
     private TableColumn<Reserva, String> colFecha;
     @FXML
     private TableColumn<Reserva, Integer> colMesa;
 
     private ObservableList<Reserva> listaReservas = FXCollections.observableArrayList();
+    private ReservaDAO reservaDAO;
+
+    public ReservaController() {
+        this.reservaDAO = new ReservaDAOImpl(new Conexionsecu());
+    }
 
     @FXML
     public void initialize() {
-        // Inicializar las columnas de la tabla
+        colIdReserva.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId_reserva()).asObject());
         colCliente.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId_cliente()).asObject());
-        colFecha.setCellValueFactory(cellData -> new SimpleStringProperty(new SimpleDateFormat("yyyy-MM-dd").format(cellData.getValue().getFecha())));
+        colUsuario.setCellValueFactory(cellData -> new SimpleStringProperty("Usuario " + cellData.getValue().getId_usuario()));
+        colFecha.setCellValueFactory(cellData -> new SimpleStringProperty(
+                cellData.getValue().getFecha().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+        ));
         colMesa.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId_mesa()).asObject());
 
-        // Cargar reservas existentes (si las hay)
         cargarReservas();
     }
 
@@ -59,51 +75,55 @@ public class ReservaController {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Considerar un mejor manejo de errores aquí
         }
     }
 
     @FXML
     private void handleAgregar() {
         try {
-            // Lógica para agregar una reserva
             int cliente = Integer.parseInt(clienteField.getText());
-            Date fecha = new SimpleDateFormat("yyyy-MM-dd").parse(fechaReservaField.getText());
+            LocalDateTime fecha = LocalDateTime.parse(fechaReservaField.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             int mesa = Integer.parseInt(numeroMesaField.getText());
+            int idUsuario = obtenerIdUsuario(); // Método para obtener el ID del usuario logueado
 
-            Reserva nuevaReserva = new Reserva(0, cliente, 0, fecha, mesa);
+            Reserva nuevaReserva = new Reserva(0, cliente, idUsuario, fecha, mesa);
+            reservaDAO.agregarReserva(nuevaReserva);
             listaReservas.add(nuevaReserva);
             tablaReservas.setItems(listaReservas);
-
-            // Limpiar campos
             limpiarCampos();
         } catch (Exception e) {
             e.printStackTrace(); // Manejar excepciones adecuadamente
         }
     }
 
+    // ReservaController
+    private int obtenerIdUsuario() {
+        return SesionUsuario.getInstance().getIdUsuario(); // Asegúrate de que esto retorne el ID correcto
+    }
+
     @FXML
     private void handleEditar() {
-        // Lógica para editar la reserva seleccionada
         Reserva reservaSeleccionada = tablaReservas.getSelectionModel().getSelectedItem();
         if (reservaSeleccionada != null) {
             try {
                 reservaSeleccionada.setId_cliente(Integer.parseInt(clienteField.getText()));
-                reservaSeleccionada.setFecha(new SimpleDateFormat("yyyy-MM-dd").parse(fechaReservaField.getText()));
+                reservaSeleccionada.setFecha(LocalDateTime.parse(fechaReservaField.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
                 reservaSeleccionada.setId_mesa(Integer.parseInt(numeroMesaField.getText()));
-                tablaReservas.refresh(); // Refrescar la tabla
+                reservaDAO.agregarReserva(reservaSeleccionada);
+                tablaReservas.refresh();
                 limpiarCampos();
             } catch (Exception e) {
-                e.printStackTrace(); // Manejar excepciones adecuadamente
+                e.printStackTrace();
             }
         }
     }
 
     @FXML
     private void handleEliminar() {
-        // Lógica para eliminar la reserva seleccionada
         Reserva reservaSeleccionada = tablaReservas.getSelectionModel().getSelectedItem();
         if (reservaSeleccionada != null) {
+            reservaDAO.eliminarReserva(reservaSeleccionada.getId_reserva());
             listaReservas.remove(reservaSeleccionada);
             tablaReservas.setItems(listaReservas);
         }
@@ -116,10 +136,9 @@ public class ReservaController {
     }
 
     private void cargarReservas() {
-        // Aquí puedes cargar reservas desde la base de datos o de donde las necesites
-        // Ejemplo de adición de reservas dummy
-        listaReservas.add(new Reserva(1, 1, 0, new Date(), 1));
-        listaReservas.add(new Reserva(2, 2, 0, new Date(), 2));
+        listaReservas.clear(); // Limpiar antes de cargar
+        List<Reserva> reservas = reservaDAO.obtenerTodasLasReservas();
+        listaReservas.addAll(reservas);
         tablaReservas.setItems(listaReservas);
     }
 }
