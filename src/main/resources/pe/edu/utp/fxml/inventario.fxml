@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.utp.controladores.InventarioController">
+    <children>
+        <!-- Título -->
+        <Label layoutX="160.0" layoutY="20.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Inventario de Productos" />
+
+        <!-- Tabla de productos -->
+        <TableView fx:id="tablaProductos" layoutX="23.0" layoutY="57.0" prefHeight="250.0" prefWidth="400.0">
+            <columns>
+                <TableColumn fx:id="colIDProducto" prefWidth="100.0" text="ID Producto" />
+                <TableColumn fx:id="colNombre" prefWidth="150.0" text="Nombre" />
+                <TableColumn fx:id="colPrecio" prefWidth="149.0" text="Precio" />
+            </columns>
+        </TableView>
+
+        <!-- Botones de acción -->
+
+
+        <Button fx:id="btnEliminar" layoutX="432.0" layoutY="182.0" onAction="#handleEliminar" prefWidth="80.0" text="Eliminar" />
+        <Button fx:id="btnRegresar" layoutX="432.0" layoutY="224.0" onAction="#handleRegresar" prefWidth="80.0" text="Regresar" />
+
+    </children>
+</AnchorPane>
