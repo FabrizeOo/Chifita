@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class Conexionsecu {
 
-    private String url = "jdbc:mariadb://serveo.net:1069/chifabd";
-    private String user = "fabrize";
-    private String pass = "orrai";
+    private String url = "jdbc:mysql://localhost:3306/chifa";
+    private String user = "root";
+    private String pass = "";
 
     public Conexionsecu() {
 

@@ -22,6 +22,7 @@ import pe.edu.utp.modelos.Pedido;
 import pe.edu.utp.modelos.SesionUsuario;
 import pe.edu.utp.utilidades.Conexionsecu;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -66,7 +67,7 @@ public class PedidoController {
     }
 
     @FXML
-    private void handleProcesar() {
+    private void handleProcesar() throws SQLException {
         Map<Integer, Integer> pedidos = new HashMap<>();
         boolean hayProductos = false;
 
