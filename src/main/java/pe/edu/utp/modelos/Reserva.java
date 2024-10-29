@@ -1,6 +1,7 @@
 package pe.edu.utp.modelos;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Reserva {
     private int id_reserva;
@@ -16,6 +17,9 @@ public class Reserva {
         this.id_usuario = id_usuario;
         this.fecha = fecha;
         this.id_mesa = id_mesa;
+    }
+
+    public Reserva(int idReserva, int idCliente, int idUsuario, Date date, int idMesa) {
     }
 
     // Getters
